@@ -1,0 +1,14 @@
+{
+    "scripts": {
+        "dev": "npx tailwindcss -i ./apps/static/assets/input.css -o ./apps/static/dist/css/output.css --watch",
+        "build": "npx tailwindcss -i ./apps/static/assets/input.css -o ./apps/static/dist/css/output.css"
+    },
+    "devDependencies": {
+        "prettier": "^3.2.5",
+        "tailwindcss": "^3.4.3"
+    },
+    "dependencies": {
+        "@material-tailwind/html": "^2.2.2",
+        "flowbite": "^2.3.0"
+    }
+}
