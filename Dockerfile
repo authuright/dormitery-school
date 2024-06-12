@@ -22,6 +22,7 @@ COPY . .
 # RUN flask gen_api
 
 # gunicorn
-# CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
 
-CMD [ "flask", "run" ]
+# CMD [ "flask", "run" ]
+
