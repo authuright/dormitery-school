@@ -1,41 +1,21 @@
-version: '3.8'
-services:
-  dormitery-app:
-    container_name: dormitery_app
-    restart: always
-    build: .
-    networks:
-      - dorm_network
-      - web_network
+version: "3"
 
+name: dormitery-webase
+services:
   postgres:
-      image: postgres:latest
-      container_name: database
-      restart: always
-      environment:
-        POSTGRES_DB: dormitery_db
-        POSTGRES_USER: dormitery_db_usr
-        POSTGRES_PASSWORD: mypassword
-      ports:
-        - "5432:5432"
-      networks:
-        - dorm_network
-        
-  nginx:
-    container_name: nginx
+    image: postgres:latest
+    container_name: database
     restart: always
-    image: "nginx:latest"
+    environment:
+      POSTGRES_DB: dormitery_db
+      POSTGRES_USER: dormitery_db_usr
+      POSTGRES_PASSWORD: mypassword
     ports:
-      - "5085:5085"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - "5432:5432"
     networks:
-      - web_network
-    depends_on: 
-      - dormitery-app
+      - dorm-network
+
 networks:
-  dorm_network:
+  dorm-network:
+    name: dorm-network
     driver: bridge
-  web_network:
-    driver: bridge
- 

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - {% block title %}{% endblock %} | Dormitery School</title>
+    {% include "includes/meta-seo.html" %}
+    <link rel="stylesheet" href="{{url_for('static',filename='/dist/css/output.css') }}" />
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %} 
+    <script>
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-800">
+    {% include "includes/navbar.html" %}
+    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+      {% include "includes/sidebar.html" %} 
+      <div
+        class="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90"
+        id="sidebarBackdrop"
+      ></div>
+      <div
+        id="main-content"
+        class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
+      >
+        <main>
+          <div class="px-4 pt-6">
+            {% block content %}{% endblock content %}
+          </div>
+        </main> 
+      </div>
+    </div>
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+    <!-- Specific JS goes HERE --> 
+    {% block javascripts %}{% endblock javascripts %}
+    </script>
+    <script src="{{ config.ASSETS_ROOT }}/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ config.ASSETS_ROOT }}/js/bootstrap.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </body>
+</html>
